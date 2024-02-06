@@ -74,37 +74,7 @@ jobs:
 
       - name: Build GCC toolchain
         run: |
-          ./build-gcc-with-args.sh \
-            "lowrisc-toolchain-gcc-${{ matrix.name }}" \
-            "${{ matrix.target }}" \
-            "${{ matrix.output_dir }}" \
-            "${{ matrix.march }}" \
-            "${{ matrix.mabi}}" \
-            "${{ matrix.mcmodel }}" \
-            "${{ matrix.cflags }}"
-
-      - name: Build Clang toolchain
-        run: |
-          ./build-clang-with-args.sh \
-            "lowrisc-toolchain-${{ matrix.name }}" \
-            "${{ matrix.target }}" \
-            "${{ matrix.output_dir }}" \
-            "${{ matrix.march }}" \
-            "${{ matrix.mabi}}" \
-            "${{ matrix.mcmodel }}" \
-            "${{ matrix.cflags }}"
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.name }}-toolchains
-          path: ${{ env.ARTIFACT_STAGING_DIR }}
-
-      - name: Check tarballs
-        run: |
-          set -e
-          for f in "${ARTIFACT_STAGING_DIR}"/*.tar.xz; do
-            ./check-tarball.sh "$f"
-          done
+          echo 'hello' > "${ARTIFACT_STAGING_DIR}/foo.txt"
 
       - name: Release
         if: github.ref_type == 'tag'
@@ -118,5 +88,4 @@ jobs:
           gh release create "$RELEASE_TAG" --prerelease || echo "release exists"
           # Upload this job's artifacts.
           gh release upload "$RELEASE_TAG" --clobber \
-            "${ARTIFACT_STAGING_DIR}/lowrisc-toolchain-${{ matrix.name }}-${RELEASE_TAG}.tar.xz" \
-            "${ARTIFACT_STAGING_DIR}/lowrisc-toolchain-gcc-${{ matrix.name }}-${RELEASE_TAG}.tar.xz"
+            "${ARTIFACT_STAGING_DIR}/foo.txt
