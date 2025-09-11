@@ -9,7 +9,7 @@
 # - single-byte code coverage
 export LLVM_URL=https://github.com/lowRISC/llvm-project.git
 export LLVM_BRANCH=ot-llvm-16-hardening
-export LLVM_VERSION=dec908d48facb6041c12b95b8ade64719a894917
+export LLVM_VERSION=d213f6b2e0bcc561930538ef47b3b5cc900b5b17
 
 # RISC-V fork of Binutils 2.35 with bitmanip instruction support
 export BINUTILS_URL=https://github.com/riscv-collab/riscv-binutils-gdb.git
